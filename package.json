@@ -1,0 +1,12 @@
+{
+  "title": "Tabris PDF Signing",
+  "description": "Tabris PDF Signing Example",
+  "category": "Small Apps",
+  "main": "index.js",
+  "dependencies": {
+    "tabris": "https://tabrisjs.com/downloads/nightly/tabris.tgz",
+    "promise": "^6.1.0",
+    "urijs": "^1.16.1",
+    "whatwg-fetch": "^0.7.0"
+  }
+}
