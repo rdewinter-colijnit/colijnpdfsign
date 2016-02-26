@@ -4,25 +4,23 @@ exports.create = function () {
     var pdfSelectionPage = require("./pdfSelectionPage");
     var inputs = {};
     var page = tabris.create("Page", {title: "Home", topLevel: true});
+    var counter = Object.keys(webservice.credentials).length + 2;
+    var height = 60, c = 0;
 
-    var count = Object.keys(webservice.credentials).length + 1;
-    var height = 60;
-    var centerY = -(count / 2 * height), c = 0;
-
-    var getTop = function(c, landscape) {
-        return centerY + (c * 60) + ((landscape ? screen.width : screen.height) / 2 - height / 2);
+    var getTop = function(c) {
+        console.log(screen.width);
+        return (screen.width / 2) - ((counter * height) / 2) + c * height;
     };
 
-    tabris.device.on("change:orientation", function(device, orientation) {
+    tabris.device.on("change:orientation", function() {
         var c = 0;
-        var landscape = orientation.indexOf('landscape') === 0;
         for (var i in inputs) {
             if (inputs.hasOwnProperty(i)) {
-                inputs[i].top = getTop(c++, landscape);
-                inputs[i].top = 0;
+                inputs[i].top = getTop(c++);
+                inputs[i].width = screen.width * 0.8;
             }
         }
-        button.top = getTop(c, landscape);
+        button.top = getTop(c);
     });
 
     for (var i in webservice.credentials) {
@@ -37,7 +35,7 @@ exports.create = function () {
                     centerX: 0,
                     top: getTop(c++),
                     height: 50,
-                    width: 300
+                    width: screen.width * 0.8
                 }
             }).appendTo(page);
         }

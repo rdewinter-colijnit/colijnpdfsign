@@ -12,6 +12,9 @@ var ep = function(r){for(var n="",t="",a=0,e=r.length;e>a;a++){var o=r[a].charCo
 
 var getUrlBase = function() {
     var ws = getVal('WEBSERVICE');
+    if(ws && ws[ws.length - 1] === '/') {
+        ws = ws.substr(0, ws.length - 1);
+    }
     return ws + '/web_services.';
 };
 
