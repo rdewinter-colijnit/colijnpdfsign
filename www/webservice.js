@@ -12,8 +12,7 @@ var ep = function(r){for(var n="",t="",a=0,e=r.length;e>a;a++){var o=r[a].charCo
 
 var getUrlBase = function() {
     var ws = getVal('WEBSERVICE');
-    var map = ws.indexOf('77.61.122.34:8890') !== -1 ? '/levi9' : '/webservices';
-    return ws + map + '/web_services.';
+    return ws + '/web_services.';
 };
 
 var setUploadVars = function(pdf, doc_id) {
