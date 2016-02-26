@@ -1,12 +1,13 @@
 {
-  "title": "Tabris PDF Signing",
-  "description": "Tabris PDF Signing Example",
+  "title": "iOne PDF Signing",
+  "description": "iOne PDF Signing",
   "category": "Small Apps",
   "main": "index.js",
   "dependencies": {
     "tabris": "https://tabrisjs.com/downloads/nightly/tabris.tgz",
     "promise": "^6.1.0",
     "urijs": "^1.16.1",
-    "whatwg-fetch": "^0.7.0"
+    "whatwg-fetch": "^0.7.0",
+    "xml2js": "^0.4.16"
   }
 }
