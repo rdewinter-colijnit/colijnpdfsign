@@ -42,7 +42,7 @@ exports.create = function () {
     }
 
     var button = tabris.create("Button", {
-        background: "#FF6961",
+        background: "#cd1c2a",
         textColor: "white",
         text: "Select document",
         layoutData: {

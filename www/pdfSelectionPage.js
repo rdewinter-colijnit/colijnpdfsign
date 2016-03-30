@@ -19,7 +19,6 @@ exports.create = function () {
                 });
             })
             .catch(function (e) {
-                console.log(e);
                 messageTextView.set({visible: true, text: "Error: " + e});
             });
     };
@@ -56,6 +55,30 @@ exports.create = function () {
         return items;
     };
 
+    var tapState = 0;
+    var refreshing = false;
+
+    var refresh = function() {
+        if(!refreshing) {
+            tapState += 2;
+            refreshing = true;
+            refreshButton.animate({
+                    transform : {
+                        rotation : -Math.PI * tapState
+                    }
+                }, {
+                    delay : 0,
+                    duration : 500,
+                    repeat : 1
+                }
+            );
+            setTimeout(function () {
+                refreshing = false;
+            }, 1500);
+            handleChange();
+        }
+    };
+
     var page = tabris.create("Page", {title: "Select a .pdf from the list"}).on('appear', handleChange);
 
     var collectionView = tabris.create("CollectionView", {
@@ -88,6 +111,23 @@ exports.create = function () {
         font: "38px",
         layoutData: {centerX: 0, centerY: 0}
     }).appendTo(page);
+
+    var refreshButton = tabris.create("ImageView", {
+        layoutData: {centerX: 0, bottom: 50},
+        width : 75,
+        height : 75,
+        image: "images/refresh.png"
+    }).on("tap", function() {
+        refresh();
+    }).appendTo(page);
+
+    var interval = setInterval(function(){
+        refresh();
+    }, 30000);
+
+    page.on('disappear', function() {
+        clearInterval(interval);
+    });
 
     return page;
 };

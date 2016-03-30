@@ -27,6 +27,8 @@ tabris.registerWidget("tabris.pdf", {
   }
 });
 
+tabris.ui.set("background", "#007dc2");
+
 tabris.app.on("open", function(target, params) {
   params = params.url || '';
   params = params.replace('tabrispdfsign://', '');
