@@ -27,7 +27,7 @@ tabris.registerWidget("tabris.pdf", {
   }
 });
 
-tabris.ui.set("background", "#007dc2");
+tabris.ui.set({background : "#007dc2", textColor : "white"});
 
 tabris.app.on("open", function(target, params) {
   params = params.url || '';
