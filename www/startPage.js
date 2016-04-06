@@ -8,7 +8,6 @@ exports.create = function () {
     var height = 60, c = 0;
 
     var getTop = function(c) {
-        console.log(screen.width);
         return (screen.width / 2) - ((counter * height) / 2) + c * height;
     };
 

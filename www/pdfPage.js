@@ -4,6 +4,7 @@ exports.create = function() {
         .on("appear", function() {
             var doc_id = page.get('input')['doc_id'];
             pdf.set("url", webservice.getPdfUrl(doc_id));
+            webservice.setUploadVars(pdf, doc_id);
         })
         .on("disappear", function() {
             saveAction.dispose();
@@ -25,9 +26,7 @@ exports.create = function() {
         enabled: true,
         placementPriority: "high"
     }).on("select", function () {
-        var doc_id = page.get('input')['doc_id'];
         saveAction.set("enabled", false);
-        webservice.setUploadVars(pdf, doc_id);
         pdf.save();
     });
 
