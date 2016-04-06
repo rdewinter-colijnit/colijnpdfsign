@@ -9,7 +9,7 @@
     </author>
 
     <hook type="after_platform_add" src="hooks/custom-widget.js" />
-    <preference name="EnableDeveloperConsole" value="false" />
+    <preference name="EnableDeveloperConsole" value="true" />
 
     <platform name="ios">
         <preference name="tabris-plugins" value="PDF" />
