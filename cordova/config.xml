@@ -10,6 +10,7 @@
     <access origin="*" />
     <hook type="after_platform_add" src="hooks/custom-widget.js" />
     <preference name="EnableDeveloperConsole" value="false" />
+    <preference name="target-device" value="tablet" />
 
     <platform name="ios">
         <preference name="tabris-plugins" value="PDF" />
