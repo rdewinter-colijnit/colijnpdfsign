@@ -21,7 +21,7 @@ var getUrlBase = function() {
 var setUploadVars = function(pdf, doc_id) {
     var user = getVal('USERNAME');
     var pass = ep(getVal('PASSWORD'));
-    pdf.set("uploadPath", getUrlBase() + "upload_signed_doc?schema=UP_DBA");
+    pdf.set("uploadPath", getUrlBase() + "upload_signed_doc?schema=" + getVal('SCHEMA'));
 
     pdf.set("uploadFormData", {
         i_username: user,
@@ -37,7 +37,7 @@ var getPdfsUrl = function() {
     var url = getUrlBase();
     url += "Get_Docs_To_Sign";
     url += "?i_username=" + user;
-    url += "&i_password=" + pass;
+    url += "&i_password=" + encodeURI(pass);
     return url + "&i_checksum=" + gcs(user + pass, getVal('KEY'), "");
 };
 
@@ -51,7 +51,8 @@ exports.credentials = {
     USERNAME: "Username",
     PASSWORD: "Password",
     WEBSERVICE: "Webservice URL",
-    KEY: "Key"
+    KEY: "Key",
+    SCHEMA: "Schema"
 };
 exports.getPdfUrl = getPdfUrl;
 exports.getPdfsUrl = getPdfsUrl;

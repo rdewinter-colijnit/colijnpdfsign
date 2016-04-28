@@ -1,5 +1,11 @@
 exports.create = function() {
+    var signatureAnchors = {
+        signature_seller  : "Handtekening Verkoper",
+        signature_buyer   : "Handtekening Koper"
+    };
+
     var webservice = require("./webservice");
+
     var page = tabris.create("Page", {title: "Sign PDF"})
         .on("appear", function() {
             var doc_id = page.get('input')['doc_id'];
@@ -13,25 +19,25 @@ exports.create = function() {
     var pdf = tabris.create("tabris.pdf", {
         layoutData: {left: 0, top: 0, right: 0, bottom: 0},
         mode: "SIGN",
-        signatureAnchors: {
-            signature_seller  : "Handtekening Verkoper",
-            signature_buyer   : "Handtekening Koper"
-        },
-        signatureFieldColor: [175,175,175],
+        signatureAnchors: signatureAnchors,
+        signatureFieldColor: [175, 175, 175],
         signatureFieldBox: [0, 25, 100, 50]
     });
 
     var saveAction = tabris.create("Action", {
         title: "Save",
-        enabled: true,
+        enabled: false,
         placementPriority: "high"
     }).on("select", function () {
         saveAction.set("enabled", false);
         pdf.save();
     });
 
+    var signatures = 0;
+
     pdf.on("SignatureAdded", function() {
-        saveAction.set("enabled", true);
+        signatures++;
+        saveAction.set("enabled", Object.keys(signatureAnchors).length <= signatures);
     });
 
     pdf.on("SignatureRemoved", function() {

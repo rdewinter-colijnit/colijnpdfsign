@@ -10,7 +10,7 @@ exports.create = function () {
     var handleChange = function () {
         fetch(webservice.getPdfsUrl())
             .then(function (response) {
-                return response.text()
+               return response.text()
             })
             .then(function (response) {
                 parseString(response, function (err, result) {
